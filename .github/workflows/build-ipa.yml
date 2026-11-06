@@ -1,20 +1,23 @@
-# Builds Husk.ipa (with the Arabic localization) on a GitHub macOS runner.
-# Put this file at .github/workflows/build-ipa.yml in YOUR fork, push, then Actions > "Build IPA" > Run workflow.
-# Untested: the full native build (QEMU, ANGLE, virglrenderer) is long; the job limit is 6 hours.
 name: Build IPA
 on:
   workflow_dispatch:
 jobs:
   build:
-    runs-on: macos-14
+    runs-on: macos-26
     timeout-minutes: 360
     steps:
       - uses: actions/checkout@v4
+      - name: Select newest Xcode
+        run: |
+          ls -d /Applications/Xcode*.app || true
+          X=$(ls -d /Applications/Xcode_*.app 2>/dev/null | sort -V | tail -1)
+          if [ -n "$X" ]; then sudo xcode-select -s "$X/Contents/Developer"; fi
+          xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-version
       - name: Tools
         run: |
           brew install meson ninja pkg-config xcodegen qemu python@3.12 || true
           rustup target add aarch64-apple-ios
-          xcodebuild -version
       - name: Build
         run: ./scripts/ci_build.sh build/Husk.ipa
       - uses: actions/upload-artifact@v4
