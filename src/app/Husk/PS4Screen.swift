@@ -152,7 +152,7 @@ struct PS4PlayView: View {
             if !model.running {
                 VStack(spacing: 12) {
                     if model.error == nil, model.state <= Int32(HUSK_CONSOLE_BOOTING.rawValue) { ProgressView().tint(.white) }
-                    Text(model.statusText)
+                    Text(LocalizedStringKey(model.statusText))
                         .font(.system(size: 15, weight: .medium)).foregroundStyle(.white.opacity(0.85))
                         .multilineTextAlignment(.center).frame(maxWidth: 460)
                 }

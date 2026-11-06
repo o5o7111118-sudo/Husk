@@ -296,7 +296,7 @@ struct CompatibilitySection: View {
                 HStack(spacing: 12) {
                     Image(systemName: status.symbol).font(.title3).foregroundStyle(status.color)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(status.label).font(.body.weight(.semibold))
+                        Text(LocalizedStringKey(status.label)).font(.body.weight(.semibold))
                         Text(entry.official?.note.isEmpty == false ? entry.official!.note : status.explanation)
                             .font(.footnote).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
                     }
@@ -373,11 +373,11 @@ struct CompatReportSheet: View {
                     Text("Your Husk log helps the developer see what went wrong. Only moderators can read it.")
                 }
                 if let error {
-                    Section { Text(error).foregroundStyle(.red) }
+                    Section { Text(LocalizedStringKey(error)).foregroundStyle(.red) }
                 }
                 if let queued {
                     Section {
-                        Label { Text(queued).fixedSize(horizontal: false, vertical: true) }
+                        Label { Text(LocalizedStringKey(queued)).fixedSize(horizontal: false, vertical: true) }
                             icon: { Image(systemName: "checkmark.circle.fill").foregroundStyle(.green) }
                     } header: { Text("Report Saved") }
                 }
@@ -432,7 +432,7 @@ struct CompatReportSheet: View {
 struct CompatBadge: View {
     let status: CompatibilityStore.Status
     var body: some View {
-        Label(status.label, systemImage: status.symbol)
+        Label(LocalizedStringKey(status.label), systemImage: status.symbol)
             .labelStyle(.titleAndIcon)
             .font(.caption.weight(.medium))
             .foregroundStyle(status.color)

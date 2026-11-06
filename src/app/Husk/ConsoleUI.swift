@@ -144,7 +144,7 @@ struct ConsoleChip: View {
 
     var body: some View {
         Button(action: action) {
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(.system(size: compact ? 13 : 14, weight: .semibold))
                 .foregroundStyle(selected ? Color.white : Console.text.opacity(0.85))
                 .padding(.horizontal, compact ? 11 : 14)

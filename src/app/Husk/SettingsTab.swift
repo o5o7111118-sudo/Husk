@@ -132,7 +132,7 @@ struct SettingsTab: View {
     }
 
     private func row<D: View>(_ destination: D, _ icon: String, _ tint: Color,
-                              _ title: String, _ subtitle: String) -> some View {
+                              _ title: LocalizedStringKey, _ subtitle: LocalizedStringKey) -> some View {
         NavigationLink { destination } label: {
             Label {
                 VStack(alignment: .leading, spacing: 1) {
@@ -272,7 +272,7 @@ struct FontSettings: View {
                     }
                     .disabled(fonts.downloading)
                 }
-                if let failure = fonts.failure { Text(failure).font(.caption).foregroundStyle(.red) }
+                if let failure = fonts.failure { Text(LocalizedStringKey(failure)).font(.caption).foregroundStyle(.red) }
             } header: {
                 Text("Chinese, Japanese and Korean")
             } footer: {
@@ -625,7 +625,7 @@ struct JITLessSettings: View {
                     Button(role: .destructive) { certificate.remove() } label: { Label("Remove Certificate", systemImage: "trash") }
                 }
                 if let why = certificate.lastError {
-                    Text(why).font(.caption).foregroundStyle(.orange)
+                    Text(LocalizedStringKey(why)).font(.caption).foregroundStyle(.orange)
                 }
             } header: {
                 Text("Certificate")
@@ -744,7 +744,7 @@ struct JITSettings: View {
                           value: JITBootstrap.detached ? "detached" : "attached",
                           mono: false)
                 if let why = JITBootstrap.lastFailure {
-                    Text(why).font(.caption).foregroundStyle(.orange)
+                    Text(LocalizedStringKey(why)).font(.caption).foregroundStyle(.orange)
                 }
                 if !JITBootstrap.ready {
                     Button {
@@ -865,7 +865,7 @@ struct SavedMachineSettings: View {
                 }
                 .disabled(!QemuRunner.shared.hasSnapshot)
                 if let deleteResult {
-                    Text(deleteResult).font(.caption).foregroundStyle(.secondary)
+                    Text(LocalizedStringKey(deleteResult)).font(.caption).foregroundStyle(.secondary)
                 }
             } footer: {
                 Text(QemuRunner.shared.hasSnapshot
@@ -892,7 +892,7 @@ struct SavedMachineSettings: View {
                 }
                 .disabled(runner.isRunning || androidBytes == 0)
                 if let removeResult {
-                    Text(removeResult).font(.caption).foregroundStyle(.secondary)
+                    Text(LocalizedStringKey(removeResult)).font(.caption).foregroundStyle(.secondary)
                 }
             } footer: {
                 Text(androidBytes > 0

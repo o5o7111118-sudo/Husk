@@ -59,7 +59,7 @@ private struct PageHero<Action: View>: View {
                 .padding(.vertical, 4)
             }
             if !subtitle.isEmpty {
-                Text(subtitle).font(.subheadline).foregroundStyle(Console.textDim)
+                Text(LocalizedStringKey(subtitle)).font(.subheadline).foregroundStyle(Console.textDim)
             }
         }
         .padding(.vertical, 4)
@@ -90,7 +90,7 @@ private struct BigButton: View {
 
     var body: some View {
         Button(action: action) {
-            Label(title, systemImage: systemImage)
+            Label(LocalizedStringKey(title), systemImage: systemImage)
                 .font(.system(.headline, design: .rounded))
                 .frame(maxWidth: .infinity)
                 .frame(height: 50)
@@ -234,7 +234,7 @@ struct GamePage: View {
                 } header: {
                     Text("Saves")
                 } footer: {
-                    if let savesMessage { Text(savesMessage) }
+                    if let savesMessage { Text(LocalizedStringKey(savesMessage)) }
                     else if loadedNow { Text("\(app.label) has been started in this run of Husk. Close Husk and open it again to restore saves.") }
                     else { Text("A backup is a .zip of everything \(app.label) has saved in Husk, to keep in Files or move to another device.") }
                 }
@@ -428,7 +428,7 @@ struct GamePage: View {
                 BigButton(title: "Add Geometry Dash First", systemImage: "plus", prominent: false) { }.disabled(true)
             }
         } else if let preparing {
-            HStack(spacing: 10) { ProgressView(); Text(preparing).foregroundStyle(.secondary).lineLimit(1) }
+            HStack(spacing: 10) { ProgressView(); Text(LocalizedStringKey(preparing)).foregroundStyle(.secondary).lineLimit(1) }
                 .frame(maxWidth: .infinity).frame(height: 50)
         } else if blockedBy != nil {
             BigButton(title: "Close Husk to Play", systemImage: "xmark.circle", prominent: false) { confirmQuit = true }

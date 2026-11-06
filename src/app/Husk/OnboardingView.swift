@@ -216,7 +216,7 @@ struct OnboardingView: View {
         }
     }
 
-    private func header(_ symbol: String, _ title: String, _ subtitle: String) -> some View {
+    private func header(_ symbol: String, _ title: LocalizedStringKey, _ subtitle: LocalizedStringKey) -> some View {
         VStack(spacing: 12) {
             Image(systemName: symbol)
                 .font(.system(size: 50, weight: .regular))
@@ -254,7 +254,7 @@ struct OnboardingView: View {
     }
 
     /// A list to choose one from, searchable, with the choice ticked.
-    private func picker(symbol: String, title: String, subtitle: String, rows: [SetupChoice],
+    private func picker(symbol: String, title: LocalizedStringKey, subtitle: LocalizedStringKey, rows: [SetupChoice],
                         selection: Binding<String>) -> some View {
         let shown = rows.filter { matches(query, $0.name, $0.id) }
         return VStack(spacing: 16) {
@@ -347,8 +347,8 @@ struct OnboardingView: View {
                 .foregroundStyle(caution ? Color.orange : Theme.accent)
                 .frame(width: 30, height: 30)
             VStack(alignment: .leading, spacing: 3) {
-                Text(title).font(.body.weight(.medium))
-                Text(detail).font(.caption).foregroundStyle(caution ? Color.orange : Color.secondary)
+                Text(LocalizedStringKey(title)).font(.body.weight(.medium))
+                Text(LocalizedStringKey(detail)).font(.caption).foregroundStyle(caution ? Color.orange : Color.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 8)
@@ -423,7 +423,7 @@ struct OnboardingView: View {
                     .font(.body.weight(.semibold))
                     .foregroundStyle(Theme.accent)
                     if let why = certificate.lastError {
-                        Text(why).font(.caption).foregroundStyle(.orange)
+                        Text(LocalizedStringKey(why)).font(.caption).foregroundStyle(.orange)
                     }
                 }
                 .padding(.horizontal, 28)

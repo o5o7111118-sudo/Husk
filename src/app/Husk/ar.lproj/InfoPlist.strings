@@ -1,0 +1,20 @@
+/* No comment provided by engineer. */
+"Android App" = "تطبيق أندرويد";
+
+/* No comment provided by engineer. */
+"Android App Bundle (APKM)" = "حزمة تطبيق أندرويد (APKM)";
+
+/* No comment provided by engineer. */
+"Android App Bundle (APKS)" = "حزمة تطبيق أندرويد (APKS)";
+
+/* No comment provided by engineer. */
+"Android App Bundle (XAPK)" = "حزمة تطبيق أندرويد (XAPK)";
+
+/* Bundle display name */
+"CFBundleDisplayName" = "Husk";
+
+/* Bundle name */
+"CFBundleName" = "Husk";
+
+/* Privacy - Local Network Usage Description */
+"NSLocalNetworkUsageDescription" = "يقترن Husk بهذا الآيفون عبر الشبكة المحلية لتفعيل JIT دون الحاجة إلى حاسوب.";

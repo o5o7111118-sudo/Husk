@@ -615,7 +615,7 @@ private struct JITNotice: View {
             }
             .buttonStyle(CardButtonStyle())
             if let error = jit.error {
-                Text(error).font(.caption).foregroundStyle(.orange).fixedSize(horizontal: false, vertical: true)
+                Text(LocalizedStringKey(error)).font(.caption).foregroundStyle(.orange).fixedSize(horizontal: false, vertical: true)
             }
         }
     }
@@ -649,7 +649,7 @@ private struct DownloadsNotice: View {
                     Image(systemName: "arrow.down.circle.fill")
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundStyle(Theme.accent)
-                    Text(status).font(.system(size: 14, weight: .semibold)).foregroundStyle(.white).lineLimit(1)
+                    Text(LocalizedStringKey(status)).font(.system(size: 14, weight: .semibold)).foregroundStyle(.white).lineLimit(1)
                     Spacer(minLength: 0)
                     Image(systemName: "chevron.right").font(.system(size: 12, weight: .bold)).foregroundStyle(Console.textDim)
                 }
@@ -868,11 +868,11 @@ struct LibraryScreen: View {
         if !items.isEmpty || empty != nil {
             VStack(alignment: .leading, spacing: 14) {
                 HStack(alignment: .firstTextBaseline, spacing: 8) {
-                    Text(title).font(.system(size: 21, weight: .bold)).foregroundStyle(Console.text)
+                    Text(LocalizedStringKey(title)).font(.system(size: 21, weight: .bold)).foregroundStyle(Console.text)
                     Text("\(items.count)").font(.system(size: 15, weight: .medium)).foregroundStyle(Console.textDim)
                 }
                 if items.isEmpty, let empty {
-                    Text(empty)
+                    Text(LocalizedStringKey(empty))
                         .font(.subheadline)
                         .foregroundStyle(Console.textDim)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -980,7 +980,7 @@ private struct LibraryCell: View {
                         .lineLimit(1)
                 }
                 if let caption {
-                    Text(caption).font(.system(size: small ? 9 : 11)).foregroundStyle(Console.textDim).lineLimit(1)
+                    Text(LocalizedStringKey(caption)).font(.system(size: small ? 9 : 11)).foregroundStyle(Console.textDim).lineLimit(1)
                 }
             }
         }
@@ -1018,13 +1018,13 @@ struct LauncherTile: View {
                 if let result { GameStatusBadge(result: result).offset(x: 5, y: -5) }
             }
             VStack(spacing: 1) {
-                Text(title)
+                Text(LocalizedStringKey(title))
                     .font(.caption.weight(.medium))
                     .foregroundStyle(.primary)
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
                 if let caption {
-                    Text(caption).font(.caption2).foregroundStyle(.secondary).lineLimit(1)
+                    Text(LocalizedStringKey(caption)).font(.caption2).foregroundStyle(.secondary).lineLimit(1)
                 }
             }
             .padding(.top, item?.runsInAndroid == true ? 3 : 0)
@@ -1077,7 +1077,7 @@ private struct RemoveItemDialog: ViewModifier {
                     }
                 }
             } message: {
-                Text(removeMessage)
+                Text(LocalizedStringKey(removeMessage))
             }
     }
 
@@ -1137,7 +1137,7 @@ struct BusyStrip: View {
     var body: some View {
         HStack(spacing: 12) {
             ProgressView()
-            Text(text).font(.subheadline).lineLimit(2)
+            Text(LocalizedStringKey(text)).font(.subheadline).lineLimit(2)
             Spacer(minLength: 0)
         }
         .padding(14)
@@ -1157,7 +1157,7 @@ struct SearchField: View {
                 Image(systemName: "magnifyingglass")
                     .font(.system(size: 15, weight: .medium))
                     .foregroundStyle(.secondary)
-                TextField(prompt, text: $text)
+                TextField(LocalizedStringKey(prompt), text: $text)
                     .focused($focused)
                     .submitLabel(.search)
                     .autocorrectionDisabled()

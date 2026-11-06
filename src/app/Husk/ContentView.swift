@@ -684,7 +684,7 @@ struct ControlsSheet: View {
         }
     }
 
-    private func row(_ icon: String, _ title: String,
+    private func row(_ icon: String, _ title: LocalizedStringKey,
                      on: Bool, available: Bool) -> some View {
         HStack(spacing: 14) {
             Image(systemName: icon)

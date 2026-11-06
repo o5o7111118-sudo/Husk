@@ -53,6 +53,7 @@
 		<string>en</string>
 		<string>zh-Hans</string>
 		<string>ja</string>
+		<string>ar</string>
 	</array>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>

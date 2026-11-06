@@ -96,7 +96,7 @@ struct ProfileView: View {
     private func stat(_ value: String, _ label: String) -> some View {
         VStack(spacing: 4) {
             Text(value).font(.system(size: 22, weight: .bold)).foregroundStyle(Console.text).lineLimit(1).minimumScaleFactor(0.7)
-            Text(label).font(.system(size: 12)).foregroundStyle(Console.textDim)
+            Text(LocalizedStringKey(label)).font(.system(size: 12)).foregroundStyle(Console.textDim)
         }
         .frame(maxWidth: .infinity)
     }
@@ -146,7 +146,7 @@ struct SignInView: View {
                         .padding(.horizontal, 14).frame(height: 48)
                         .background(Console.card, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
                 }
-                if let error { Text(error).font(.footnote).foregroundStyle(.orange).multilineTextAlignment(.center) }
+                if let error { Text(LocalizedStringKey(error)).font(.footnote).foregroundStyle(.orange).multilineTextAlignment(.center) }
                 Button { Task { await submit() } } label: {
                     if account.busy { ProgressView().tint(.white) } else { Text(creating ? "Create Account" : "Sign In") }
                 }
@@ -163,7 +163,7 @@ struct SignInView: View {
     }
 
     private func field(_ title: String, text: Binding<String>) -> some View {
-        TextField(title, text: text)
+        TextField(LocalizedStringKey(title), text: text)
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
             .padding(.horizontal, 14).frame(height: 48)
@@ -220,7 +220,7 @@ struct EditProfileView: View {
                 if account.avatar != nil {
                     Section { Button("Remove Picture", role: .destructive) { Task { try? await account.update(avatarPNG: .some(nil)) } } }
                 }
-                if let error { Section { Text(error).foregroundStyle(.orange) } }
+                if let error { Section { Text(LocalizedStringKey(error)).foregroundStyle(.orange) } }
             }
             .navigationTitle("Edit Profile")
             .navigationBarTitleDisplayMode(.inline)

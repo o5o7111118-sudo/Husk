@@ -91,7 +91,7 @@ struct ImportView: View {
     private func format(_ text: String) -> some View {
         HStack(spacing: 10) {
             Image(systemName: "checkmark").font(.system(size: 13, weight: .bold)).foregroundStyle(Theme.accent)
-            Text(text).font(.system(size: 14)).foregroundStyle(Console.text.opacity(0.9))
+            Text(LocalizedStringKey(text)).font(.system(size: 14)).foregroundStyle(Console.text.opacity(0.9))
         }
     }
 
@@ -99,7 +99,7 @@ struct ImportView: View {
         Button(action: action) {
             HStack(spacing: 12) {
                 Image(systemName: icon).font(.system(size: 16, weight: .semibold)).foregroundStyle(Theme.accent).frame(width: 24)
-                Text(title).font(.system(size: 15, weight: .medium)).foregroundStyle(Console.text)
+                Text(LocalizedStringKey(title)).font(.system(size: 15, weight: .medium)).foregroundStyle(Console.text)
                 Spacer()
                 Image(systemName: "chevron.right").font(.system(size: 12, weight: .bold)).foregroundStyle(Console.textDim)
             }
